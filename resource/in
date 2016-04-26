@@ -1,0 +1,28 @@
+#!/bin/sh
+
+INPUT="`cat`"
+VERSION="`echo \"\$INPUT\" | jq -r .version.version`"
+TIMESTAMP="`echo \"\$INPUT\" | jq -r .version.timestamp`"
+if [ null = "$VERSION" ]; then
+TIMESTAMP="`date -u +'%Y-%m-%dT%H:%M:%SZ'`"
+VERSION="${TIMESTAMP//:/-}"
+fi
+
+echo "$VERSION" >"$1/version"
+echo "$TIMESTAMP" >"$1/timestamp"
+cat >"$1/properties.sh" <<EOF
+VERSION='$VERSION'
+TIMESTAMP='$TIMESTAMP'
+EOF
+cat >"$1/properties.json" <<EOF
+{
+  "version": "$VERSION",
+  "timestamp": "$TIMESTAMP"
+}
+EOF
+cat <<EOF
+{ "version": {
+  "version": "$VERSION",
+  "timestamp": "$TIMESTAMP"
+} }
+EOF
