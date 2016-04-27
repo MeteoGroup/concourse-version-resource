@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 TIMESTAMP="`date -u +'%Y-%m-%dT%H:%M:%SZ'`"
 VERSION="${TIMESTAMP//:/-}"

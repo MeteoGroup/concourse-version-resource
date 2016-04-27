@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 PREVIOUS_VERSION="`jq -r .version.version`"
 TIMESTAMP="`date -u +'%Y-%m-%dT%H:%M:%SZ'`"
