@@ -1,4 +1,4 @@
-FROM ekarge/toolbelt:jq
+FROM toolbelt/jq
 
 COPY resource /opt/resource
 
